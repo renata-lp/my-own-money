@@ -1,17 +1,25 @@
 import { useState } from "react";
 import Welcome from "./components/Welcome";
+import Consent from "./components/Consent";
 import Module1 from "./modules/Module1";
 import Module2 from "./modules/Module2";
 import "./App.css";
 
 export default function App() {
   const [screen, setScreen] = useState("welcome");
+  const [session, setSession] = useState(null);
+
+  const handleConsent = (sessionData) => {
+    setSession(sessionData);
+    setScreen("module1");
+  };
 
   return (
     <div className="app">
-      {screen === "welcome" && <Welcome onStart={() => setScreen("module1")} />}
-      {screen === "module1" && <Module1 onComplete={() => setScreen("module2")} />}
-      {screen === "module2" && <Module2 onComplete={() => setScreen("done")} />}
+      {screen === "welcome" && <Welcome onStart={() => setScreen("consent")} />}
+      {screen === "consent" && <Consent onComplete={handleConsent} />}
+      {screen === "module1" && <Module1 session={session} onComplete={() => setScreen("module2")} />}
+      {screen === "module2" && <Module2 session={session} onComplete={() => setScreen("done")} />}
       {screen === "done" && (
         <div className="done-screen">
           <div className="done-inner">

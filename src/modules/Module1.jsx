@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Module1.css";
+import "./Module1.css";import LessonFeedback from "../components/LessonFeedback";
 
 const STEPS = [
   "intro",
@@ -21,7 +21,7 @@ const SORT_ITEMS = [
   { id: 6, label: "🧥 A coat in winter", category: "need" },
 ];
 
-export default function Module1({ onComplete }) {
+export default function Module1({ onComplete, session }) {
   const [stepIndex, setStepIndex] = useState(0);
   const step = STEPS[stepIndex];
   const progress = (stepIndex / (STEPS.length - 1)) * 100;
@@ -51,7 +51,7 @@ export default function Module1({ onComplete }) {
         {step === "quiz1" && <StepQuiz1 onNext={next} />}
         {step === "impulse" && <StepImpulse onNext={next} />}
         {step === "quiz2" && <StepQuiz2 onNext={next} />}
-        {step === "complete" && <StepComplete onComplete={onComplete} />}
+        {step === "complete" && <StepComplete onComplete={onComplete} session={session} />}
       </div>
     </div>
   );
@@ -407,12 +407,15 @@ function StepQuiz2({ onNext }) {
   );
 }
 
-function StepComplete({ onComplete }) {
+function StepComplete({ onComplete, session }) {
+  const [feedbackDone, setFeedbackDone] = useState(false);
+
   return (
     <div className="step fade-in complete-step">
       <div className="complete-badge">🏅</div>
       <h2>Lesson 1 done!</h2>
       <p className="step-lead">You now know how to think before you spend.</p>
+
       <div className="summary-box">
         <p className="summary-title">What you learned:</p>
         <ul>
@@ -422,10 +425,23 @@ function StepComplete({ onComplete }) {
           <li>✓ The pause — your most underrated money skill</li>
         </ul>
       </div>
-      <p className="step-body">
-        Next up: what to do when something costs more than you have right now.
-      </p>
-      <button className="btn-green" onClick={onComplete}>Continue to Lesson 2 →</button>
+
+      <LessonFeedback
+        lessonNumber={1}
+        session={session}
+        onComplete={() => setFeedbackDone(true)}
+      />
+
+      {feedbackDone && (
+        <>
+          <p className="step-body">
+            Next up: what to do when something costs more than you have right now.
+          </p>
+          <button className="btn-green" onClick={onComplete}>
+            Continue to Lesson 2 →
+          </button>
+        </>
+      )}
     </div>
   );
 }
