@@ -394,4 +394,108 @@
   .two-col, .drop-zones {
     grid-template-columns: 1fr;
   }
+}.sort-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-height: 70px;
+}
+
+.sort-chip {
+  background: var(--white);
+  border: 2.5px solid #D0CCE0;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.sort-chip:hover {
+  border-color: var(--sun);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+}
+.sort-chip.selected {
+  border-color: var(--sun);
+  background: var(--sun-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245,166,35,0.3);
+}
+.sort-chip.chip-correct {
+  border-color: var(--green);
+  background: #EAFAF1;
+  color: var(--green-dark);
+}
+.sort-chip.chip-wrong {
+  border-color: var(--coral);
+  background: #FDEDEA;
+  color: var(--coral);
+}
+
+.sort-hint {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sun);
+  text-align: center;
+  animation: fadeUp 0.2s ease both;
+}.sort-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-height: 70px;
+}
+
+.sort-chip {
+  background: var(--white);
+  border: 2.5px solid #D0CCE0;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.sort-chip:hover {
+  border-color: var(--sun);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+}
+.sort-chip.selected {
+  border-color: var(--sun);
+  background: var(--sun-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245,166,35,0.3);
+}
+.sort-chip.chip-correct {
+  border-color: var(--green);
+  background: #EAFAF1;
+  color: var(--green-dark);
+}
+.sort-chip.chip-wrong {
+  border-color: var(--coral);
+  background: #FDEDEA;
+  color: var(--coral);
+}
+
+.sort-hint {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sun);
+  text-align: center;
+  animation: fadeUp 0.2s ease both;
 }
