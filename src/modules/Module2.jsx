@@ -1,4 +1,5 @@
 import { useState } from "react";
+import LessonFeedback from "../components/LessonFeedback";
 import "./Module2.css";
 
 const STEPS = [
@@ -11,7 +12,7 @@ const STEPS = [
   "complete",
 ];
 
-export default function Module2({ onComplete }) {
+export default function Module2({ onComplete, session }) {
   const [stepIndex, setStepIndex] = useState(0);
   const step = STEPS[stepIndex];
   const progress = (stepIndex / (STEPS.length - 1)) * 100;
@@ -40,7 +41,7 @@ export default function Module2({ onComplete }) {
         {step === "quiz1" && <StepQuiz1 onNext={next} />}
         {step === "how-to-save" && <StepHowToSave onNext={next} />}
         {step === "quiz2" && <StepQuiz2 onNext={next} />}
-        {step === "complete" && <StepComplete onComplete={onComplete} />}
+        {step === "complete" && <StepComplete onComplete={onComplete} session={session} />}
       </div>
     </div>
   );
@@ -310,12 +311,15 @@ function StepQuiz2({ onNext }) {
   );
 }
 
-function StepComplete({ onComplete }) {
+function StepComplete({ onComplete, session }) {
+  const [feedbackDone, setFeedbackDone] = useState(false);
+
   return (
     <div className="step fade-in complete-step">
       <div className="complete-badge">🏅</div>
       <h2>Lesson 2 done!</h2>
       <p className="step-lead">You now know how to save with a purpose.</p>
+
       <div className="summary-box">
         <p className="summary-title">What you learned:</p>
         <ul>
@@ -325,12 +329,23 @@ function StepComplete({ onComplete }) {
           <li>✓ The golden rule: save first, spend what's left</li>
         </ul>
       </div>
-      <p className="step-body">
-        Next up: other ways to grow your money pile — beyond just saving.
-      </p>
-      <button className="btn-green" onClick={onComplete}>
-        Continue to Lesson 3 →
-      </button>
+
+      <LessonFeedback
+        lessonNumber={2}
+        session={session}
+        onComplete={() => setFeedbackDone(true)}
+      />
+
+      {feedbackDone && (
+        <>
+          <p className="step-body">
+            Next up: other ways to grow your money pile — beyond just saving.
+          </p>
+          <button className="btn-green" onClick={onComplete}>
+            Continue to Lesson 3 →
+          </button>
+        </>
+      )}
     </div>
   );
 }

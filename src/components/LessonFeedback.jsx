@@ -36,7 +36,7 @@ export default function LessonFeedback({ lessonNumber, session, onComplete }) {
 
   const canSubmit = ease && tricky;
 
-  const handleSubmit = async () => {
+const handleSubmit = async () => {
     if (!canSubmit) return;
     setLoading(true);
 
@@ -49,6 +49,7 @@ export default function LessonFeedback({ lessonNumber, session, onComplete }) {
 
     setSubmitted(true);
     setLoading(false);
+    onComplete();
   };
 
   if (submitted) {
