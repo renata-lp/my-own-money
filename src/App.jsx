@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Welcome from "./components/Welcome";
 import Consent from "./components/Consent";
 import Module1 from "./modules/Module1";
@@ -8,6 +8,14 @@ import "./App.css";
 export default function App() {
   const [screen, setScreen] = useState("welcome");
   const [session, setSession] = useState(null);
+
+  // Secret skip: add ?lesson=2 to URL to jump directly
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const lesson = params.get("lesson");
+    if (lesson === "2") setScreen("module2");
+    if (lesson === "done") setScreen("done");
+  }, []);
 
   const handleConsent = (sessionData) => {
     setSession(sessionData);
