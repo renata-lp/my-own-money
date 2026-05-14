@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./Module1.css";import LessonFeedback from "../components/LessonFeedback";
+import LessonFeedback from "../components/LessonFeedback";
+import "./Module1.css";
 
 const STEPS = [
   "intro",
@@ -21,7 +22,7 @@ const SORT_ITEMS = [
   { id: 6, label: "🧥 A coat in winter", category: "need" },
 ];
 
-export default function Module1({ onComplete, session }) {
+export default function Module1({ onComplete, session, onHome }) {
   const [stepIndex, setStepIndex] = useState(0);
   const step = STEPS[stepIndex];
   const progress = (stepIndex / (STEPS.length - 1)) * 100;
@@ -37,6 +38,7 @@ export default function Module1({ onComplete, session }) {
         </button>
         <div className="module-label">Lesson 1 · Spending decisions</div>
         <div className="step-count">{stepIndex + 1}/{STEPS.length}</div>
+        <button className="home-btn" onClick={onHome}>⌂</button>
       </div>
 
       <div className="progress-bar-wrap">
@@ -222,7 +224,9 @@ function SortZone({ label, items, results, checked, active, onTap, onChipTap, se
       </div>
     </div>
   );
-}function StepJoyTest({ onNext }) {
+}
+
+function StepJoyTest({ onNext }) {
   return (
     <div className="step fade-in">
       <div className="step-emoji">✨</div>
@@ -265,9 +269,7 @@ function SortZone({ label, items, results, checked, active, onTap, onChipTap, se
       <button className="btn-primary" onClick={onNext}>Got it →</button>
     </div>
   );
-}
-
-function StepQuiz1({ onNext }) {
+}function StepQuiz1({ onNext }) {
   const [selected, setSelected] = useState(null);
   const correct = 2;
   const options = [
@@ -415,7 +417,6 @@ function StepComplete({ onComplete, session }) {
       <div className="complete-badge">🏅</div>
       <h2>Lesson 1 done!</h2>
       <p className="step-lead">You now know how to think before you spend.</p>
-
       <div className="summary-box">
         <p className="summary-title">What you learned:</p>
         <ul>
@@ -425,13 +426,11 @@ function StepComplete({ onComplete, session }) {
           <li>✓ The pause — your most underrated money skill</li>
         </ul>
       </div>
-
       <LessonFeedback
         lessonNumber={1}
         session={session}
         onComplete={() => setFeedbackDone(true)}
       />
-
       {feedbackDone && (
         <>
           <p className="step-body">

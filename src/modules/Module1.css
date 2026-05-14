@@ -498,4 +498,17 @@
   color: var(--sun);
   text-align: center;
   animation: fadeUp 0.2s ease both;
+}.home-btn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: var(--mid);
+  padding: 8px;
+  transition: color 0.15s;
+  line-height: 1;
+}
+
+.home-btn:hover {
+  color: var(--dark);
 }
