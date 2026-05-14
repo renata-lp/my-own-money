@@ -68,7 +68,7 @@ export default function Consent({ onComplete }) {
             </button>
           </div>
 
-          <p className="consent-label">How old is your child?</p>
+          <p className="consent-label">How old is the child doing this?</p>
           <div className="consent-options">
             {AGE_OPTIONS.map((age) => (
               <button
