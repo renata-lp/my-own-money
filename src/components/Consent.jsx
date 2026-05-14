@@ -2,20 +2,25 @@ import { useState } from "react";
 import { supabase } from "../supabase";
 import "./Consent.css";
 
+const AGE_OPTIONS = ["8–10", "11–13", "14–16", "17 or older"];
+
 export default function Consent({ onComplete }) {
   const [path, setPath] = useState(null);
+  const [ageRange, setAgeRange] = useState(null);
   const [agreed, setAgreed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const canStart = agreed && path && ageRange;
+
   const handleStart = async () => {
-    if (!agreed || !path) return;
+    if (!canStart) return;
     setLoading(true);
     setError(null);
 
     const { data, error } = await supabase
       .from("sessions")
-      .insert([{ path }])
+      .insert([{ path, age_range: ageRange }])
       .select()
       .single();
 
@@ -25,7 +30,7 @@ export default function Consent({ onComplete }) {
       return;
     }
 
-    onComplete({ sessionId: data.id, path });
+    onComplete({ sessionId: data.id, path, ageRange });
   };
 
   return (
@@ -63,6 +68,19 @@ export default function Consent({ onComplete }) {
             </button>
           </div>
 
+          <p className="consent-label">How old is your child?</p>
+          <div className="consent-options">
+            {AGE_OPTIONS.map((age) => (
+              <button
+                key={age}
+                className={`consent-option ${ageRange === age ? "selected" : ""}`}
+                onClick={() => setAgeRange(age)}
+              >
+                {age}
+              </button>
+            ))}
+          </div>
+
           <label className="consent-checkbox">
             <input
               type="checkbox"
@@ -77,8 +95,8 @@ export default function Consent({ onComplete }) {
           <button
             className="btn-primary"
             onClick={handleStart}
-            disabled={!agreed || !path || loading}
-            style={{ opacity: agreed && path ? 1 : 0.4 }}
+            disabled={!canStart || loading}
+            style={{ opacity: canStart ? 1 : 0.4 }}
           >
             {loading ? "Starting..." : "Hand back to your child →"}
           </button>

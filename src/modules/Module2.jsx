@@ -61,10 +61,10 @@ function StepIntro({ onNext }) {
         </p>
       </div>
       <p className="step-body">
-        It sounds simple — because it is. The hard part isn't understanding it. It's actually doing it, every week, even when you feel like spending right now.
+        Now, some bigger things — a new device, an expensive game — will probably be covered by parents or grandparents for birthdays or holidays. That's fine. But plenty of things fall in the middle: not cheap enough to buy straight away, not expensive enough to wait for a special occasion.
       </p>
       <p className="step-body">
-        This lesson is about making that easier.
+        That's exactly where saving comes in. And the habit you build saving for smaller things will serve you well for much bigger ones later.
       </p>
       <button className="btn-primary" onClick={onNext}>Let's go →</button>
     </div>
@@ -96,7 +96,7 @@ function StepWhySave({ onNext }) {
       </div>
       <div className="highlight-box">
         <p>
-          <strong>The key:</strong> have a specific goal in mind. "Save money" is vague and easy to give up on. "Save €80 for football boots by August" is concrete — and much easier to stick to.
+          <strong>The key:</strong> have a specific goal in mind. "Save money" is vague and easy to give up on. "Save €30 for headphones by next month" is concrete — and much easier to stick to.
         </p>
       </div>
       <button className="btn-primary" onClick={onNext}>Set a goal →</button>
@@ -121,14 +121,17 @@ function StepGoalSetter({ onNext }) {
       <div className="step-emoji">🧮</div>
       <h2>Let's work out your goal</h2>
       <p className="step-body">
-        Fill in the boxes below. Use whatever currency you have — the numbers are what matter.
+        Think of something you genuinely want that costs more than you have right now — ideally something in the range of one to a few weeks of saving. Fill in the boxes below.
+      </p>
+      <p className="step-body">
+        Tip: if you still want it after saving for a few weeks, you probably actually want it.
       </p>
       <div className="goal-form">
         <div className="goal-field">
           <label>What are you saving for?</label>
           <input
             type="text"
-            placeholder="e.g. football boots, a camera, a trip..."
+            placeholder="e.g. a book, headphones, art supplies..."
             value={goal}
             onChange={(e) => { setGoal(e.target.value); setSubmitted(false); }}
           />
@@ -137,7 +140,7 @@ function StepGoalSetter({ onNext }) {
           <label>How much does it cost?</label>
           <input
             type="number"
-            placeholder="e.g. 80"
+            placeholder="e.g. 25"
             value={cost}
             onChange={(e) => { setCost(e.target.value); setSubmitted(false); }}
             min="0"
@@ -147,7 +150,7 @@ function StepGoalSetter({ onNext }) {
           <label>How much can you save each week?</label>
           <input
             type="number"
-            placeholder="e.g. 5"
+            placeholder="e.g. 3"
             value={weekly}
             onChange={(e) => { setWeekly(e.target.value); setSubmitted(false); }}
             min="0"
