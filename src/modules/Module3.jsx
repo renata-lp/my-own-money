@@ -75,7 +75,7 @@ function StepIntro({ onNext }) {
         <div className="way-card">
           <div className="way-icon">🗣️</div>
           <h3>Have the conversation</h3>
-          <p>Talk to your parents about a regular allowance — it's a skill, not just asking for money.</p>
+          <p>Talk to your parents about a regular allowance — knowing how to have that conversation well is itself a useful skill.</p>
         </div>
       </div>
       <button className="btn-primary" onClick={onNext}>Let's look at each →</button>
