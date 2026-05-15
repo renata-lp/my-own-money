@@ -5,6 +5,7 @@ import "./Module2.css";
 const STEPS = [
   "intro",
   "why-save",
+  "money-in",
   "goal-setter",
   "quiz1",
   "how-to-save",
@@ -12,8 +13,9 @@ const STEPS = [
   "complete",
 ];
 
-export default function Module2({ onComplete, session }) {
+export default function Module2({ onComplete, session, onHome }) {
   const [stepIndex, setStepIndex] = useState(0);
+  const [suggested, setSuggested] = useState({ amount: "", frequency: "week" });
   const step = STEPS[stepIndex];
   const progress = (stepIndex / (STEPS.length - 1)) * 100;
 
@@ -37,7 +39,8 @@ export default function Module2({ onComplete, session }) {
       <div className="module-body">
         {step === "intro" && <StepIntro onNext={next} />}
         {step === "why-save" && <StepWhySave onNext={next} />}
-        {step === "goal-setter" && <StepGoalSetter onNext={next} />}
+        {step === "money-in" && <StepMoneyIn onNext={next} onSuggestion={(s) => setSuggested(s)} />}
+        {step === "goal-setter" && <StepGoalSetter onNext={next} suggested={suggested} />}
         {step === "quiz1" && <StepQuiz1 onNext={next} />}
         {step === "how-to-save" && <StepHowToSave onNext={next} />}
         {step === "quiz2" && <StepQuiz2 onNext={next} />}
@@ -103,11 +106,128 @@ function StepWhySave({ onNext }) {
     </div>
   );
 }
+function StepMoneyIn({ onNext, onSuggestion }) {
+  const [frequency, setFrequency] = useState(null);
+  const [bracket, setBracket] = useState(null);
+  const [noMoneyYet, setNoMoneyYet] = useState(false);
 
-function StepGoalSetter({ onNext }) {
+  const frequencies = [
+    { id: "weekly", label: "Weekly pocket money" },
+    { id: "monthly", label: "Monthly pocket money" },
+    { id: "occasional", label: "Birthdays and holidays mainly" },
+    { id: "mix", label: "A mix of regular and occasional" },
+    { id: "none", label: "I don't get money regularly yet" },
+  ];
+
+  const brackets = {
+    weekly: [
+      { label: "Less than €5 a week", weekly: 2 },
+      { label: "€5–10 a week", weekly: 5 },
+      { label: "€10–20 a week", weekly: 10 },
+      { label: "More than €20 a week", weekly: 15 },
+    ],
+    monthly: [
+      { label: "Less than €20 a month", weekly: 3 },
+      { label: "€20–50 a month", weekly: 8 },
+      { label: "€50–100 a month", weekly: 15 },
+      { label: "More than €100 a month", weekly: 20 },
+    ],
+    occasional: [
+      { label: "Less than €50 a year", weekly: 1, note: "monthly" },
+      { label: "€50–150 a year", weekly: 5, note: "monthly" },
+      { label: "€150–300 a year", weekly: 10, note: "monthly" },
+      { label: "More than €300 a year", weekly: 20, note: "monthly" },
+    ],
+    mix: [
+      { label: "Less than €50 a year total", weekly: 2 },
+      { label: "€50–150 a year total", weekly: 6 },
+      { label: "€150–300 a year total", weekly: 12 },
+      { label: "More than €300 a year total", weekly: 20 },
+    ],
+    none: [
+      { label: "A small amount — say €2–5", weekly: 2 },
+      { label: "A medium amount — say €5–10", weekly: 5 },
+      { label: "A larger amount — say €10–20", weekly: 10 },
+    ],
+  };
+
+  const handleFrequency = (id) => {
+    setFrequency(id);
+    setBracket(null);
+    setNoMoneyYet(id === "none");
+  };
+
+  const handleBracket = (b) => {
+    setBracket(b);
+    const suggested = Math.max(1, Math.round(b.weekly * 0.3));
+    const freq = b.note === "monthly" ? "month" : "week";
+    onSuggestion({ amount: String(suggested), frequency: freq });
+  };
+
+  const canNext = frequency && bracket;
+
+  return (
+    <div className="step fade-in">
+      <div className="step-emoji">💰</div>
+      <h2>First — what money do you have coming in?</h2>
+      <p className="step-body">
+        Before we work out how to save, let's think about what you're working with.
+      </p>
+
+      {noMoneyYet && (
+        <div className="highlight-box">
+          <p>That's fine — lots of people start here. For this exercise, imagine you did get a small amount regularly. Pick one below and use it to practise — it's a useful skill even before the money arrives.</p>
+        </div>
+      )}
+
+      <p className="ob-label">How do you usually get money?</p>
+      <div className="ob-options">
+        {frequencies.map((f) => (
+          <button
+            key={f.id}
+            className={`ob-option ${frequency === f.id ? "selected" : ""}`}
+            onClick={() => handleFrequency(f.id)}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      {frequency && (
+        <>
+          <p className="ob-label" style={{ marginTop: "8px" }}>
+            {noMoneyYet
+              ? "If you did get money regularly, what would feel realistic?"
+              : frequency === "occasional" || frequency === "mix"
+              ? "Roughly how much do you receive in a typical year?"
+              : `Roughly how much do you get?`}
+          </p>
+          <div className="ob-options">
+            {brackets[frequency].map((b, i) => (
+              <button
+                key={i}
+                className={`ob-option ${bracket === b ? "selected" : ""}`}
+                onClick={() => handleBracket(b)}
+              >
+                {b.label}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+
+      {canNext && (
+        <button className="btn-primary" onClick={onNext}>
+          Now let's set a goal →
+        </button>
+      )}
+    </div>
+  );
+}
+function StepGoalSetter({ onNext, suggested }) {
   const [goal, setGoal] = useState("");
   const [cost, setCost] = useState("");
-  const [weekly, setWeekly] = useState("");
+  const [weekly, setWeekly] = useState(suggested?.amount || "");
   const [submitted, setSubmitted] = useState(false);
 
   const costNum = parseFloat(cost) || 0;
@@ -126,6 +246,11 @@ function StepGoalSetter({ onNext }) {
       <p className="step-body">
         Tip: if you still want it after saving for a few weeks, you probably actually want it.
       </p>
+      {suggested?.amount && (
+        <div className="highlight-box">
+          <p>💡 Based on what you told us, we've suggested a saving amount below — feel free to change it.</p>
+        </div>
+      )}
       <div className="goal-form">
         <div className="goal-field">
           <label>What are you saving for?</label>

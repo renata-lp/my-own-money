@@ -133,3 +133,41 @@
   color: var(--mid);
   line-height: 1.6;
 }
+.ob-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ob-option {
+  background: var(--light);
+  border: 2.5px solid #D0CCE0;
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--dark);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+
+.ob-option:hover {
+  border-color: var(--sun);
+  background: var(--sun-light);
+}
+
+.ob-option.selected {
+  border-color: var(--sun);
+  background: var(--sun-light);
+  color: var(--dark);
+}
+
+.ob-label {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: -4px;
+}

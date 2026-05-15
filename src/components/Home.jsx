@@ -98,7 +98,7 @@ export default function Home({ completedLessons, onSelectLesson }) {
           const isNext = !isCompleted && lesson.number === Math.min(
             ...LESSONS.filter(l => !completedLessons.includes(l.number)).map(l => l.number)
           );
-          const isLocked = !isCompleted && !isNext && lesson.comingSoon;
+          const isLocked = !isCompleted && !isNext;
           const isAvailable = isCompleted || isNext;
 
           return (

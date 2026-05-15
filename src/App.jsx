@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Welcome from "./components/Welcome";
 import Consent from "./components/Consent";
 import Home from "./components/Home";
@@ -10,13 +10,21 @@ export default function App() {
   const [screen, setScreen] = useState("welcome");
   const [session, setSession] = useState(null);
   const [completedLessons, setCompletedLessons] = useState([]);
+  const [suggested, setSuggested] = useState({ amount: "", frequency: "week" });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const lesson = params.get("lesson");
+    if (lesson === "2") setScreen("module2");
+    if (lesson === "done") setScreen("done");
+  }, []);
 
   const handleConsent = (sessionData) => {
     setSession(sessionData);
     setScreen("home");
   };
 
-  const completeLesson = (lessonNumber, nextScreen) => {
+  const completeLesson = (lessonNumber) => {
     setCompletedLessons((prev) =>
       prev.includes(lessonNumber) ? prev : [...prev, lessonNumber]
     );
