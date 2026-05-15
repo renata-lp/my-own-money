@@ -132,11 +132,15 @@ function StepSort({ onNext }) {
 
   const handleChipTap = (item) => {
     if (checked && results[item.id] === true) return;
+    if (checked) {
+      setChecked(false);
+      setResults({});
+    }
     setSelected((prev) => (prev === item.id ? null : item.id));
   };
 
   const handleZoneTap = (zone) => {
-    if (!selected || checked) return;
+    if (!selected) return;
     setPlacements((prev) => ({ ...prev, [selected]: zone }));
     setSelected(null);
     setChecked(false);
@@ -185,8 +189,26 @@ function StepSort({ onNext }) {
       )}
       {selected && <p className="sort-hint">Now tap a box below ↓</p>}
       <div className="drop-zones">
-        <SortZone label="Needs 🏠" zone="need" items={needs} results={results} checked={checked} active={!!selected && !checked} onTap={() => handleZoneTap("need")} onChipTap={handleChipTap} selected={selected} />
-        <SortZone label="Wants 🎮" zone="want" items={wants} results={results} checked={checked} active={!!selected && !checked} onTap={() => handleZoneTap("want")} onChipTap={handleChipTap} selected={selected} />
+        <SortZone
+          label="Needs 🏠"
+          zone="need"
+          items={needs}
+          results={results}
+          checked={checked}
+          selected={selected}
+          onTap={() => handleZoneTap("need")}
+          onChipTap={handleChipTap}
+        />
+        <SortZone
+          label="Wants 🎮"
+          zone="want"
+          items={wants}
+          results={results}
+          checked={checked}
+          selected={selected}
+          onTap={() => handleZoneTap("want")}
+          onChipTap={handleChipTap}
+        />
       </div>
       {allPlaced && !checked && (
         <button className="btn-primary" onClick={handleCheck}>Check my answers</button>
@@ -204,9 +226,13 @@ function StepSort({ onNext }) {
   );
 }
 
-function SortZone({ label, items, results, checked, active, onTap, onChipTap, selected }) {
+function SortZone({ label, items, results, checked, selected, onTap, onChipTap }) {
+  const isActive = !!selected;
   return (
-    <div className={`drop-zone ${active ? "over" : ""}`} onClick={onTap}>
+    <div
+      className={`drop-zone ${isActive ? "over" : ""}`}
+      onClick={() => { if (selected) onTap(); }}
+    >
       <div className="drop-zone-label">{label}</div>
       <div className="drop-zone-items">
         {items.map((item) => {
@@ -215,12 +241,18 @@ function SortZone({ label, items, results, checked, active, onTap, onChipTap, se
           if (checked && results[item.id] === true) cls += " chip-correct";
           if (checked && results[item.id] === false) cls += " chip-wrong";
           return (
-            <button key={item.id} className={cls} onClick={(e) => { e.stopPropagation(); onChipTap(item); }}>
+            <button
+              key={item.id}
+              className={cls}
+              onClick={(e) => { e.stopPropagation(); onChipTap(item); }}
+            >
               {item.label}
             </button>
           );
         })}
-        {items.length === 0 && <span className="drop-hint">{active ? "Tap to place here" : "Empty"}</span>}
+        {items.length === 0 && (
+          <span className="drop-hint">{isActive ? "Tap to place here" : "Empty"}</span>
+        )}
       </div>
     </div>
   );

@@ -26,8 +26,15 @@ const TRICKY_OPTIONS = {
     "The quizzes",
     "Nothing was tricky",
   ],
+  3: [
+    "The earning ideas",
+    "The selling tips",
+    "The allowance conversation section",
+    "The 'what to do next' activity",
+    "The quizzes",
+    "Nothing was tricky",
+  ],
 };
-
 export default function LessonFeedback({ lessonNumber, session, onComplete }) {
   const [ease, setEase] = useState(null);
   const [tricky, setTricky] = useState(null);

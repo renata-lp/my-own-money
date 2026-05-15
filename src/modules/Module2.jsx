@@ -133,21 +133,21 @@ function StepMoneyIn({ onNext, onSuggestion }) {
       { label: "More than €100 a month", weekly: 20 },
     ],
     occasional: [
-      { label: "Less than €50 a year", weekly: 1, note: "monthly" },
-      { label: "€50–150 a year", weekly: 5, note: "monthly" },
-      { label: "€150–300 a year", weekly: 10, note: "monthly" },
-      { label: "More than €300 a year", weekly: 20, note: "monthly" },
+      { label: "Less than €50 a year", lump: 15 },
+      { label: "€50–150 a year", lump: 40 },
+      { label: "€150–300 a year", lump: 80 },
+      { label: "More than €300 a year", lump: 150 },
     ],
     mix: [
-      { label: "Less than €50 a year total", weekly: 2 },
-      { label: "€50–150 a year total", weekly: 6 },
-      { label: "€150–300 a year total", weekly: 12 },
-      { label: "More than €300 a year total", weekly: 20 },
+      { label: "Less than €50 a year total", lump: 15 },
+      { label: "€50–150 a year total", lump: 40 },
+      { label: "€150–300 a year total", lump: 80 },
+      { label: "More than €300 a year total", lump: 150 },
     ],
     none: [
-      { label: "A small amount — say €2–5", weekly: 2 },
-      { label: "A medium amount — say €5–10", weekly: 5 },
-      { label: "A larger amount — say €10–20", weekly: 10 },
+      { label: "A small amount — say €2–5 a week", weekly: 2 },
+      { label: "A medium amount — say €5–10 a week", weekly: 5 },
+      { label: "A larger amount — say €10–20 a week", weekly: 10 },
     ],
   };
 
@@ -159,9 +159,12 @@ function StepMoneyIn({ onNext, onSuggestion }) {
 
   const handleBracket = (b) => {
     setBracket(b);
-    const suggested = Math.max(1, Math.round(b.weekly * 0.3));
-    const freq = b.note === "monthly" ? "month" : "week";
-    onSuggestion({ amount: String(suggested), frequency: freq });
+    if (b.lump) {
+      onSuggestion({ amount: String(Math.round(b.lump * 0.4)), frequency: "lump", lump: b.lump });
+    } else {
+      const suggested = Math.max(1, Math.round(b.weekly * 0.3));
+      onSuggestion({ amount: String(suggested), frequency: "week", weekly: b.weekly });
+    }
   };
 
   const canNext = frequency && bracket;
@@ -176,7 +179,7 @@ function StepMoneyIn({ onNext, onSuggestion }) {
 
       {noMoneyYet && (
         <div className="highlight-box">
-          <p>That's fine — lots of people start here. For this exercise, imagine you did get a small amount regularly. Pick one below and use it to practise — it's a useful skill even before the money arrives.</p>
+          <p>That's fine — lots of people start here. For this exercise, we'll imagine you get a small amount regularly. Pick one below and use it to practise the calculation — it's a useful skill even before the money arrives.</p>
         </div>
       )}
 
@@ -196,11 +199,11 @@ function StepMoneyIn({ onNext, onSuggestion }) {
       {frequency && (
         <>
           <p className="ob-label" style={{ marginTop: "8px" }}>
-            {noMoneyYet
-              ? "If you did get money regularly, what would feel realistic?"
-              : frequency === "occasional" || frequency === "mix"
+            {frequency === "occasional" || frequency === "mix"
               ? "Roughly how much do you receive in a typical year?"
-              : `Roughly how much do you get?`}
+              : frequency === "none"
+              ? "Suppose your family decided to give you a regular amount — what would feel realistic?"
+              : "Roughly how much do you get?"}
           </p>
           <div className="ob-options">
             {brackets[frequency].map((b, i) => (
@@ -230,10 +233,12 @@ function StepGoalSetter({ onNext, suggested }) {
   const [weekly, setWeekly] = useState(suggested?.amount || "");
   const [submitted, setSubmitted] = useState(false);
 
+  const isLump = suggested?.frequency === "lump";
   const costNum = parseFloat(cost) || 0;
   const weeklyNum = parseFloat(weekly) || 0;
   const weeks = weeklyNum > 0 ? Math.ceil(costNum / weeklyNum) : null;
   const months = weeks ? (weeks / 4.33).toFixed(1) : null;
+  const occasions = isLump && weeklyNum > 0 ? Math.ceil(costNum / weeklyNum) : null;
   const canSubmit = goal.trim() && costNum > 0 && weeklyNum > 0;
 
   return (
@@ -241,16 +246,24 @@ function StepGoalSetter({ onNext, suggested }) {
       <div className="step-emoji">🧮</div>
       <h2>Let's work out your goal</h2>
       <p className="step-body">
-        Think of something you genuinely want that costs more than you have right now — ideally something in the range of one to a few weeks of saving. Fill in the boxes below.
+        Think of something you genuinely want that costs more than you have right now. Fill in the boxes below.
       </p>
       <p className="step-body">
         Tip: if you still want it after saving for a few weeks, you probably actually want it.
       </p>
+
       {suggested?.amount && (
         <div className="highlight-box">
-          <p>💡 Based on what you told us, we've suggested a saving amount below — feel free to change it.</p>
+          <p>
+            {isLump
+              ? `💡 Based on what you told us, we've suggested an amount you could set aside next time you receive money. Feel free to change it.`
+              : suggested?.frequency === "week" && suggested?.weekly
+              ? `💡 Suppose your family gave you €${suggested.weekly} a week — we've suggested setting aside €${suggested.amount} of that for your goal. Feel free to change it.`
+              : `💡 Based on what you told us, we've suggested a saving amount below. Feel free to change it.`}
+          </p>
         </div>
       )}
+
       <div className="goal-form">
         <div className="goal-field">
           <label>What are you saving for?</label>
@@ -272,7 +285,11 @@ function StepGoalSetter({ onNext, suggested }) {
           />
         </div>
         <div className="goal-field">
-          <label>How much can you save each week?</label>
+          <label>
+            {isLump
+              ? "How much could you set aside next time you receive money?"
+              : "How much can you save each week?"}
+          </label>
           <input
             type="number"
             placeholder="e.g. 3"
@@ -291,26 +308,35 @@ function StepGoalSetter({ onNext, suggested }) {
         </button>
       </div>
 
-      {submitted && weeks && (
+      {submitted && (weeks || occasions) && (
         <div className="goal-result">
           <div className="result-headline">
             <span className="result-emoji">📅</span>
             <p>
-              If you save <strong>{weekly}</strong> per week, you'll have enough for
-              <strong> {goal}</strong> in <strong>{weeks} weeks</strong>
-              {months > 0 && <span> (about {months} months)</span>}.
+              {isLump ? (
+                <>
+                  If you set aside <strong>€{weekly}</strong> each time you receive money, you'll reach your goal for <strong>{goal}</strong> after <strong>{occasions} {occasions === 1 ? "occasion" : "occasions"}</strong>.
+                </>
+              ) : (
+                <>
+                  If you save <strong>€{weekly}</strong> per week, you'll have enough for <strong>{goal}</strong> in <strong>{weeks} weeks</strong>
+                  {months > 0 && <span> (about {months} months)</span>}.
+                </>
+              )}
             </p>
           </div>
-          {weeks <= 4 && <p className="result-note green">That's less than a month — very doable!</p>}
-          {weeks > 4 && weeks <= 12 && <p className="result-note yellow">That's a few months of patience — but totally achievable.</p>}
-          {weeks > 12 && <p className="result-note orange">That's a longer wait. Could you save a bit more each week, or find other ways to top up?</p>}
+          {!isLump && weeks <= 4 && <p className="result-note green">That's less than a month — very doable!</p>}
+          {!isLump && weeks > 4 && weeks <= 12 && <p className="result-note yellow">That's a few months of patience — but totally achievable.</p>}
+          {!isLump && weeks > 12 && <p className="result-note orange">That's a longer wait. Could you save a bit more each week, or find other ways to top up?</p>}
+          {isLump && occasions === 1 && <p className="result-note green">Just one occasion — you could have it very soon!</p>}
+          {isLump && occasions === 2 && <p className="result-note yellow">Two occasions — birthday and one more, and you're there.</p>}
+         {isLump && occasions > 2 && <p className="result-note orange">That's a few occasions away. Could you set aside a bit more each time you get money?</p>}
           <button className="btn-primary" style={{ marginTop: "16px" }} onClick={onNext}>Next →</button>
         </div>
       )}
     </div>
   );
 }
-
 function StepQuiz1({ onNext }) {
   const [selected, setSelected] = useState(null);
   const correct = 2;

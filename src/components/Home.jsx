@@ -21,7 +21,6 @@ const LESSONS = [
     description: "Earning more, selling smart, and topping up your savings.",
     emoji: "📈",
     screen: "module3",
-    comingSoon: true,
   },
   {
     number: 4,

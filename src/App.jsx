@@ -4,18 +4,19 @@ import Consent from "./components/Consent";
 import Home from "./components/Home";
 import Module1 from "./modules/Module1";
 import Module2 from "./modules/Module2";
+import Module3 from "./modules/Module3";
 import "./App.css";
 
 export default function App() {
   const [screen, setScreen] = useState("welcome");
   const [session, setSession] = useState(null);
   const [completedLessons, setCompletedLessons] = useState([]);
-  const [suggested, setSuggested] = useState({ amount: "", frequency: "week" });
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const lesson = params.get("lesson");
     if (lesson === "2") setScreen("module2");
+    if (lesson === "3") setScreen("module3");
     if (lesson === "done") setScreen("done");
   }, []);
 
@@ -55,6 +56,13 @@ export default function App() {
           session={session}
           onHome={goHome}
           onComplete={() => completeLesson(2)}
+        />
+      )}
+      {screen === "module3" && (
+        <Module3
+          session={session}
+          onHome={goHome}
+          onComplete={() => completeLesson(3)}
         />
       )}
     </div>
