@@ -28,7 +28,6 @@ const LESSONS = [
     description: "Why waiting has a cost — and what it means for your money.",
     emoji: "📊",
     screen: "module4",
-    comingSoon: true,
   },
   {
     number: 5,

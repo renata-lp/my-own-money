@@ -34,6 +34,14 @@ const TRICKY_OPTIONS = {
     "The quizzes",
     "Nothing was tricky",
   ],
+4: [
+    "Understanding what inflation means",
+    "The basket of goods explanation",
+    "Understanding the percentages",
+    "The inflation simulator",
+    "The quizzes",
+    "Nothing was tricky",
+  ],
 };
 export default function LessonFeedback({ lessonNumber, session, onComplete }) {
   const [ease, setEase] = useState(null);
