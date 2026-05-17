@@ -35,7 +35,6 @@ const LESSONS = [
     description: "The difference, the advantages, and when each makes sense.",
     emoji: "💳",
     screen: "module5",
-    comingSoon: true,
   },
   {
     number: 6,

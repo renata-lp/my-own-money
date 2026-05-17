@@ -6,6 +6,7 @@ import Module1 from "./modules/Module1";
 import Module2 from "./modules/Module2";
 import Module3 from "./modules/Module3";
 import Module4 from "./modules/Module4";
+import Module5 from "./modules/Module5";
 import "./App.css";
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
     if (lesson === "2") setScreen("module2");
     if (lesson === "3") setScreen("module3");
     if (lesson === "4") setScreen("module4");
+    if (lesson === "5") setScreen("module5");
   }, []);
 
   const handleConsent = (sessionData) => {
@@ -33,7 +35,7 @@ export default function App() {
     setScreen("home");
   };
 
- const completeLesson = (lessonNumber) => {
+  const completeLesson = (lessonNumber) => {
     setCompletedLessons((prev) => {
       const updated = prev.includes(lessonNumber) ? prev : [...prev, lessonNumber];
       localStorage.setItem("completedLessons", JSON.stringify(updated));
@@ -65,6 +67,9 @@ export default function App() {
       )}
       {screen === "module4" && (
         <Module4 session={session} onHome={goHome} onComplete={() => completeLesson(4)} />
+      )}
+      {screen === "module5" && (
+        <Module5 session={session} onHome={goHome} onComplete={() => completeLesson(5)} />
       )}
     </div>
   );

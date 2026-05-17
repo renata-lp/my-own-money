@@ -1,0 +1,184 @@
+.card-types {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-type {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.ct-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+  min-width: 36px;
+}
+
+.ct-content h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.ct-content p {
+  font-size: 0.9rem;
+  color: var(--mid);
+  line-height: 1.5;
+}
+
+.ct-note {
+  margin-top: 8px !important;
+  font-style: italic;
+  font-size: 0.82rem !important;
+  color: #9090A0 !important;
+}
+
+.flow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.flow-step {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.flow-num {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background: var(--sun);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.95rem;
+}
+
+.flow-content h3 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+.flow-content p {
+  font-size: 0.88rem;
+  color: var(--mid);
+  line-height: 1.5;
+}
+
+.flow-arrow {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #C0BBCC;
+  padding: 4px 0;
+}
+
+.myth-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.myth-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border: 2.5px solid transparent;
+  transition: border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.myth-card.correct { border-color: var(--green); }
+.myth-card.wrong { border-color: var(--coral); }
+.myth-card.tricky { border-color: var(--sun); }
+
+.myth-statement {
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.myth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.myth-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  border: 2.5px solid #D0CCE0;
+  background: var(--light);
+  color: var(--dark);
+  transition: all 0.15s;
+}
+
+.myth-btn.true:hover {
+  border-color: var(--green);
+  background: #EAFAF1;
+  color: var(--green-dark);
+}
+
+.myth-btn.false:hover {
+  border-color: var(--coral);
+  background: #FDEDEA;
+  color: var(--coral);
+}
+
+.myth-verdict {
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 8px 14px;
+  border-radius: 50px;
+  display: inline-flex;
+  align-self: flex-start;
+}
+
+.myth-verdict.correct {
+  background: #EAFAF1;
+  color: var(--green-dark);
+}
+
+.myth-verdict.wrong {
+  background: #FDEDEA;
+  color: var(--coral);
+}
+
+.myth-verdict.tricky {
+  background: var(--sun-light);
+  color: #C47D0E;
+}
+
+.myth-explanation {
+  font-size: 0.9rem;
+  color: var(--mid);
+  line-height: 1.6;
+  padding-top: 8px;
+  border-top: 1px solid #F0ECF8;
+}

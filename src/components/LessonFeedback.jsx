@@ -16,7 +16,6 @@ const TRICKY_OPTIONS = {
     "The joy test questions",
     "The impulse buying concept",
     "The quizzes",
-    "Nothing was tricky",
   ],
   2: [
     "Understanding why saving is hard",
@@ -24,7 +23,6 @@ const TRICKY_OPTIONS = {
     "The tips for saving faster",
     "The save first rule",
     "The quizzes",
-    "Nothing was tricky",
   ],
   3: [
     "The earning ideas",
@@ -32,7 +30,6 @@ const TRICKY_OPTIONS = {
     "The allowance conversation section",
     "The 'what to do next' activity",
     "The quizzes",
-    "Nothing was tricky",
   ],
 4: [
     "Understanding what inflation means",
@@ -40,7 +37,13 @@ const TRICKY_OPTIONS = {
     "Understanding the percentages",
     "The inflation simulator",
     "The quizzes",
-    "Nothing was tricky",
+  ],
+5: [
+    "The difference between cash and cards",
+    "Understanding prepaid vs debit cards",
+    "How card payments work",
+    "The myth-busting activity",
+    "The quiz",
   ],
 };
 export default function LessonFeedback({ lessonNumber, session, onComplete }) {
@@ -98,7 +101,7 @@ const handleSubmit = async () => {
       </div>
 
       <div className="lf-question">
-        <p className="lf-label">If anything was tricky, what was it?</p>
+        <p className="lf-label">What was the trickiest part?</p>
         <div className="lf-options">
           {(TRICKY_OPTIONS[lessonNumber] || []).map((opt) => (
             <button
