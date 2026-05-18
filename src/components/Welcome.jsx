@@ -46,7 +46,7 @@ export default function Welcome({ onStart }) {
         </div>
 
         <div className="welcome-meta">
-          <div className="meta-pill">📖 8 lessons</div>
+          <div className="meta-pill">📖 9 lessons</div>
           <div className="meta-pill">🎮 Quizzes & games</div>
           <div className="meta-pill">⏱ ~10 min each</div>
         </div>

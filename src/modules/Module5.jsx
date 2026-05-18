@@ -295,17 +295,17 @@ function StepHowItWorks({ onNext }) {
 
 function StepQuiz({ onNext }) {
   const [selected, setSelected] = useState(null);
-  const correct = 1;
+  const correct = 3;
   const options = [
-    "Cards are always safer than cash in every situation",
-    "Cash feels more real to spend, which often helps people spend less",
-    "Prepaid cards are linked directly to a bank account",
-    "Lost cards can never be recovered or cancelled",
+    "People always spend less with cash than with a card",
+    "Cash and card spending feel exactly the same psychologically",
+    "Cards make spending feel more real because you can see your balance go down",
+    "Handing over physical notes tends to make spending feel more significant than tapping a card",
   ];
   return (
     <div className="step fade-in">
       <div className="quiz-badge">Quick check ✓</div>
-      <h2>Which of these is true about paying with cash?</h2>
+      <h2>What does research show about how cash affects spending?</h2>
       <div className="quiz-options">
         {options.map((opt, i) => {
           let cls = "quiz-option";
@@ -323,9 +323,9 @@ function StepQuiz({ onNext }) {
       {selected !== null && (
         <>
           {selected === correct ? (
-            <div className="feedback correct">✓ Exactly. The physical act of handing over money makes spending feel more significant — and research backs this up.</div>
+            <div className="feedback correct">✓ Exactly. Physical money feels more real to part with — which is why people often spend a little more carefully with cash.</div>
           ) : (
-            <div className="feedback wrong">Not quite. Cash feels more real to spend, which research shows often leads people to spend a little less.</div>
+            <div className="feedback wrong">Not quite. Research shows that handing over physical notes tends to feel more significant than tapping a card — which often leads to slightly more careful spending.</div>
           )}
           <button className="btn-primary" style={{ marginTop: "20px" }} onClick={onNext}>Finish lesson →</button>
         </>
@@ -333,6 +333,7 @@ function StepQuiz({ onNext }) {
     </div>
   );
 }
+
 
 function StepComplete({ onComplete, session }) {
   const [feedbackDone, setFeedbackDone] = useState(false);

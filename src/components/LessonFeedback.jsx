@@ -45,6 +45,39 @@ const TRICKY_OPTIONS = {
     "The myth-busting activity",
     "The quiz",
   ],
+  6: [
+    "How banks use deposits",
+    "The pool concept",
+    "What a bank run is",
+    "Regulation and deposit protection",
+    "The banking apps section",
+    "The quiz",
+  ],
+ 7: [
+    "The rent analogy for interest",
+    "Interest on borrowing",
+    "How savings accounts pay interest",
+    "Simple vs compound interest",
+    "The slope illustration",
+    "The numbers table",
+    "The quiz",
+  ],
+  8: [
+    "The difference between debit and credit",
+    "How credit card interest works",
+    "The debt spiral example",
+    "The comparison table",
+    "The quiz",
+  ],
+ 9: [
+    "The lemonade stand analogy",
+    "The connection between lemonade and stocks",
+    "Risk and return trade-offs",
+    "Diversification and index funds",
+    "The gambling comparison",
+    "The crypto section",
+    "The quiz",
+  ],
 };
 export default function LessonFeedback({ lessonNumber, session, onComplete }) {
   const [ease, setEase] = useState(null);

@@ -42,7 +42,6 @@ const LESSONS = [
     description: "How banks work, what they do with your money, and how safe it is.",
     emoji: "🏦",
     screen: "module6",
-    comingSoon: true,
   },
   {
     number: 7,
@@ -50,7 +49,6 @@ const LESSONS = [
     description: "Making your money work for you while you sleep.",
     emoji: "💰",
     screen: "module7",
-    comingSoon: true,
   },
   {
     number: 8,
@@ -58,10 +56,15 @@ const LESSONS = [
     description: "Spending your own money vs borrowing — and why it matters.",
     emoji: "🤝",
     screen: "module8",
-    comingSoon: true,
   },
+{
+    number: 9,
+    title: "Making money grow",
+    description: "Investing, risk, diversification — and where gambling begins.",
+    emoji: "🌱",
+    screen: "module9",
+  }, ,
 ];
-
 export default function Home({ completedLessons, onSelectLesson }) {
   const completedCount = completedLessons.length;
   const progress = (completedCount / LESSONS.length) * 100;
