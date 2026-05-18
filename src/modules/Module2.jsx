@@ -346,6 +346,12 @@ function StepQuiz1({ onNext }) {
     "Set a specific goal and put aside a fixed amount regularly",
     "Only save if your parents tell you to",
   ];
+  const feedback = [
+    "Not quite. Spending as little as possible on everything isn't sustainable and isn't the point. The answer is a specific goal with a regular saving habit.",
+    "Not quite. Waiting until you have a lot of money usually means never starting. A small amount saved regularly from the start works much better.",
+    "✓ Exactly. A specific goal and a regular habit — that's the whole formula.",
+    "Not quite. Saving because you're told to rarely lasts. The answer is your own specific goal and a regular habit — that's what actually works.",
+  ];
   return (
     <div className="step fade-in">
       <div className="quiz-badge">Quick check ✓</div>
@@ -366,17 +372,64 @@ function StepQuiz1({ onNext }) {
       </div>
       {selected !== null && (
         <>
-          {selected === correct ? (
-            <div className="feedback correct">✓ Exactly. A specific goal and a regular habit — that's the whole formula.</div>
-          ) : (
-            <div className="feedback wrong">Not quite. The answer is: set a specific goal and put aside a fixed amount regularly. Vague intentions don't work — concrete plans do.</div>
-          )}
+          <div className={`feedback ${selected === correct ? "correct" : "wrong"}`}>
+            {feedback[selected]}
+          </div>
           <button className="btn-primary" style={{ marginTop: "20px" }} onClick={onNext}>Next →</button>
         </>
       )}
     </div>
   );
-}function StepHowToSave({ onNext }) {
+}
+function StepQuiz2({ onNext }) {
+  const [selected, setSelected] = useState(null);
+  const correct = 0;
+  const options = [
+    "Save first, then spend what's left",
+    "Spend first, then save whatever is left over",
+    "Only save when you feel like it",
+    "Save everything and never spend",
+  ];
+
+  const feedback = [
+    "✓ Save first, spend what's left. Simple — and it actually works.",
+    "Not quite. If you spend first, there's usually nothing left to save. The order matters — save first, then enjoy what remains.",
+    "Not quite. Saving only when you feel like it means it almost never happens. A fixed habit — save first, every time — is what actually works.",
+    "Not quite. The goal isn't to save everything — it's to save consistently before spending. You're allowed to enjoy what's left after saving.",
+  ];
+
+  return (
+    <div className="step fade-in">
+      <div className="quiz-badge">Quick check ✓</div>
+      <h2>What's the golden rule of saving?</h2>
+      <div className="quiz-options">
+        {options.map((opt, i) => {
+          let cls = "quiz-option";
+          if (selected !== null) {
+            if (i === correct) cls += " correct";
+            else if (selected === i) cls += " wrong";
+          }
+          return (
+            <button key={i} className={cls} onClick={() => setSelected(i)} disabled={selected !== null}>
+              {opt}
+            </button>
+          );
+        })}
+      </div>
+      {selected !== null && (
+        <>
+          <div className={`feedback ${selected === correct ? "correct" : "wrong"}`}>
+            {feedback[selected]}
+          </div>
+          <button className="btn-primary" style={{ marginTop: "20px" }} onClick={onNext}>
+            Finish lesson →
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
+function StepHowToSave({ onNext }) {
   return (
     <div className="step fade-in">
       <div className="step-emoji">💡</div>
@@ -424,46 +477,6 @@ function StepQuiz1({ onNext }) {
   );
 }
 
-function StepQuiz2({ onNext }) {
-  const [selected, setSelected] = useState(null);
-  const correct = 0;
-  const options = [
-    "Save first, then spend what's left",
-    "Spend first, then save whatever is left over",
-    "Only save when you feel like it",
-    "Save everything and never spend",
-  ];
-  return (
-    <div className="step fade-in">
-      <div className="quiz-badge">Quick check ✓</div>
-      <h2>What's the golden rule of saving?</h2>
-      <div className="quiz-options">
-        {options.map((opt, i) => {
-          let cls = "quiz-option";
-          if (selected !== null) {
-            if (i === correct) cls += " correct";
-            else if (selected === i) cls += " wrong";
-          }
-          return (
-            <button key={i} className={cls} onClick={() => setSelected(i)} disabled={selected !== null}>
-              {opt}
-            </button>
-          );
-        })}
-      </div>
-      {selected !== null && (
-        <>
-          {selected === correct ? (
-            <div className="feedback correct">✓ Save first, spend what's left. Simple — and it actually works.</div>
-          ) : (
-            <div className="feedback wrong">Not quite. If you spend first and save what's left, there's usually nothing left. Save first — always.</div>
-          )}
-          <button className="btn-primary" style={{ marginTop: "20px" }} onClick={onNext}>Finish lesson →</button>
-        </>
-      )}
-    </div>
-  );
-}
 
 function StepComplete({ onComplete, session }) {
   const [feedbackDone, setFeedbackDone] = useState(false);

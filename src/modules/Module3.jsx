@@ -288,7 +288,11 @@ function StepQuiz1({ onNext }) {
           {selected === correct ? (
             <div className="feedback correct">✓ Exactly. Reliability and usefulness are the foundation — the money follows.</div>
           ) : (
-            <div className="feedback wrong">Not quite. The answer is: be reliable, use skills you have, and look for ways to help others. That combination works at any age.</div>
+            <div className="feedback wrong">
+              {selected === 0 && "Not quite. Asking for money whenever you need it isn't earning — it's depending. The answer is being reliable, using skills you have, and finding ways to help others."}
+              {selected === 1 && "Not quite. You don't need to wait — there are real ways to earn at any age. Reliability, skills, and helping others are the foundation."}
+              {selected === 3 && "Not quite. Saving is important, but it works faster when combined with earning. Being reliable and useful is the key to earning more."}
+            </div>
           )}
           <button className="btn-primary" style={{ marginTop: "20px" }} onClick={onNext}>Next →</button>
         </>
@@ -387,7 +391,11 @@ function StepQuiz2({ onNext }) {
           {selected === correct ? (
             <div className="feedback correct">✓ Exactly. It's not just about cutting back — it's about understanding the full picture and widening the gap between in and out.</div>
           ) : (
-            <div className="feedback wrong">Not quite. Growing your money pile means knowing what's coming in, what's going out, and finding ways to increase the gap — both by earning more and spending wisely.</div>
+           <div className="feedback wrong">
+              {selected === 0 && "Not quite. Cutting expenses alone isn't enough — earning more matters too. The best approach is understanding both sides: what's coming in and what's going out."}
+              {selected === 2 && "Not quite. Never spending on yourself isn't the goal. Save consistently first, then enjoy what's left — that's the balance."}
+              {selected === 3 && "Not quite. Thinking about money only when you have a goal misses the habit. Knowing your numbers regularly — in and out — is what makes the difference."}
+            </div>
           )}
           <button className="btn-primary" style={{ marginTop: "20px" }} onClick={onNext}>Finish lesson →</button>
         </>

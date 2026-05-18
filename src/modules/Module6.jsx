@@ -314,7 +314,11 @@ function StepQuiz({ onNext }) {
           {selected === correct ? (
             <div className="feedback correct">✓ Exactly. The bank lends most of it out, but keeps meticulous records — so it always knows what it owes you.</div>
           ) : (
-            <div className="feedback wrong">Not quite. Banks lend out most deposits and keep precise records of each balance — your money isn't in a box, but the bank always knows what it owes you.</div>
+           <div className="feedback wrong">
+              {selected === 0 && "Not quite. Your money doesn't sit in a named box — it joins a common pool. But the bank keeps precise records so it always knows what it owes you."}
+              {selected === 1 && "Not quite. If banks kept all deposits in cash at all times, they couldn't lend — which is one of their main functions. They lend most deposits out and keep records of what each person is owed."}
+              {selected === 3 && "Not quite. Deposit protection schemes in most countries protect your money up to a significant limit if a bank fails. You're not unprotected — but knowing the limit is worth understanding."}
+            </div>
           )}
           <button className="btn-primary" style={{ marginTop: "20px" }} onClick={onNext}>Finish lesson →</button>
         </>

@@ -333,7 +333,11 @@ function StepJoyTest({ onNext }) {
           {selected === correct ? (
             <div className="feedback correct">✓ Exactly right. Two simple questions can save you a lot of regret.</div>
           ) : (
-            <div className="feedback wrong">Not quite. The answer is: ask yourself if it'll bring real joy and if you'll still want it in 3 months.</div>
+           <div className="feedback wrong">
+              {selected === 0 && "Not quite. Buying straight away without thinking means you might regret it later. Give yourself time to check if it'll bring real joy and if you'll still want it in 3 months."}
+              {selected === 1 && "Not quite. This isn't about getting permission — it's about your own thinking. Ask yourself if it'll bring real joy and if you'll still want it in 3 months."}
+              {selected === 3 && "Not quite. Wanting things isn't wrong — the skill is choosing well. Ask yourself if it'll bring real joy and if you'll still want it in 3 months."}
+            </div>
           )}
           <button className="btn-primary" style={{ marginTop: "20px" }} onClick={onNext}>Next →</button>
         </>
@@ -432,7 +436,11 @@ function StepQuiz2({ onNext }) {
           {selected === correct ? (
             <div className="feedback correct">✓ That's it. The key word is "without thinking." The pause is what makes the difference.</div>
           ) : (
-            <div className="feedback wrong">Not quite. Impulse buying means buying when you're excited, without thinking it through — not just about the price.</div>
+            <div className="feedback wrong">
+              {selected === 0 && "Not quite. There's no fixed waiting period — the point is to pause and think, not to wait a set time. Impulse buying means buying when excited without thinking it through."}
+              {selected === 2 && "Not quite. Having enough money doesn't make impulse buying fine — you can still regret a purchase you didn't think through. The issue is the thinking, not the amount."}
+              {selected === 3 && "Not quite. Impulse buying applies to anything — small or large. The key is whether you thought it through before buying."}
+            </div>
           )}
           <button className="btn-primary" style={{ marginTop: "20px" }} onClick={onNext}>Finish lesson →</button>
         </>

@@ -288,7 +288,11 @@ function StepQuiz1({ onNext }) {
           {selected === correct ? (
             <div className="feedback correct">✓ Exactly. Prices rise gradually, so the same amount of money buys less over time.</div>
           ) : (
-            <div className="feedback wrong">Not quite. Inflation means prices gradually rise over time — so your money buys less than it did before.</div>
+          <div className="feedback wrong">
+              {selected === 0 && "Not quite. That's deflation — the opposite of inflation. Inflation means prices go up, so money buys less over time."}
+              {selected === 2 && "Not quite. That's one cause of inflation but not the definition. Inflation is the gradual rise in prices over time — so money buys less than it used to."}
+              {selected === 3 && "Not quite. Stable prices would mean no inflation. Inflation means prices gradually rise, so the same amount of money buys less than before."}
+            </div>
           )}
           <button className="btn-primary" style={{ marginTop: "20px" }} onClick={onNext}>Next →</button>
         </>

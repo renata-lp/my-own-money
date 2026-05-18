@@ -400,7 +400,11 @@ function StepQuiz({ onNext }) {
           {selected === correct ? (
             <div className="feedback correct">✓ Exactly. You earn interest on your interest — which means the longer you leave it, the faster it grows.</div>
           ) : (
-            <div className="feedback wrong">Not quite. With compound interest, you earn interest on your interest too — not just on the original amount. That's what makes it so powerful over time.</div>
+           <div className="feedback wrong">
+              {selected === 0 && "Not quite. Interest isn't a one-off fee — it's charged as a percentage over time, as long as money is borrowed or saved."}
+              {selected === 1 && "Not quite. That's simple interest — earning only on the original amount. Compound interest earns on the original plus all interest already accumulated."}
+              {selected === 3 && "Not quite. Interest applies to saving too — banks pay you interest when you deposit into a savings account."}
+            </div>
           )}
           <button className="btn-primary" style={{ marginTop: "20px" }} onClick={onNext}>Finish lesson →</button>
         </>
