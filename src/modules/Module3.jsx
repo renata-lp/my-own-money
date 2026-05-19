@@ -91,7 +91,7 @@ function StepEarnMore({ onNext }) {
       id: 1,
       emoji: "🏡",
       title: "Help at home",
-      body: "Extra chores beyond your usual ones — washing the car, tidying the garden, organising a room. Make it clear these are extras, not the things you're expected to do anyway.",
+      body: "Extra chores beyond your usual ones — washing the car, cleaning out the garden, organising a room. Make it clear these are extras, not the things you're expected to do anyway.",
     },
     {
       id: 2,

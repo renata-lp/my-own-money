@@ -107,7 +107,7 @@ function StepThePool({ onNext }) {
       <div className="step-emoji">🏊</div>
       <h2>The common pool</h2>
       <p className="step-body">
-        Because so many people deposit money — and they don't all need it back at the same time — all deposits go into a common pool. The bank uses that pool to make loans, and repayments flow back in.
+        Because so many people deposit money in the bank — and they don't all need it back at the same time — all deposits go into a common pool. The bank uses that pool to make loans, and repayments flow back in.
       </p>
       <p className="step-body">
         When you want your money back, the bank pays you from the pool. Not from a box with your name on it — but the records mean it always knows exactly what you're owed.

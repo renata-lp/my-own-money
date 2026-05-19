@@ -147,7 +147,7 @@ function StepLemonadeToStocks({ onNext }) {
           <div className="sc-icon">🏢</div>
           <div className="sc-content">
             <h3>Buying a share in a company</h3>
-            <p>You put in €100. The company uses capital from many investors to build products and sell them. If the company does well, your share grows in value. If it struggles, it falls.</p>
+            <p>You put in €100. Than is capital you are investing. The company uses capital from many investors to build products and sell them. If the company does well, your share grows in value. If it struggles, it falls.</p>
           </div>
         </div>
       </div>

@@ -81,7 +81,7 @@ function StepWhatIsCash({ onNext }) {
         <div className="concept-card need">
           <div className="concept-icon">✅</div>
           <h3>Advantages</h3>
-          <p>You always know exactly how much you have. It's tangible — spending it feels real, which often helps people spend less. No technology needed. Works everywhere.</p>
+          <p>You always know exactly how much you have. It's tangible — you can see and touch it so using it feels real, which often helps people spend less. No technology needed. Works everywhere.</p>
         </div>
         <div className="concept-card want">
           <div className="concept-icon">⚠️</div>
