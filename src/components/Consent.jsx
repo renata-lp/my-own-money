@@ -80,7 +80,9 @@ export default function Consent({ onComplete }) {
               </button>
             ))}
           </div>
-
+        <p className="consent-privacy-note">
+        Quiz answers are not recorded or judged. Getting things wrong is part of the learning — nobody will know, and it doesn't matter.
+        </p>
           <label className="consent-checkbox">
             <input
               type="checkbox"

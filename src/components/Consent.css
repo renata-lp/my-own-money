@@ -147,3 +147,13 @@
   color: var(--coral);
   font-weight: 700;
 }
+.consent-privacy-note {
+  font-size: 0.85rem;
+  color: var(--mid);
+  line-height: 1.6;
+  font-style: italic;
+  padding: 12px 16px;
+  background: #EAFAF1;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--green);
+}

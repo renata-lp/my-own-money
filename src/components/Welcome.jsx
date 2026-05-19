@@ -50,7 +50,9 @@ export default function Welcome({ onStart }) {
           <div className="meta-pill">🎮 Quizzes & games</div>
           <div className="meta-pill">⏱ ~10 min each</div>
         </div>
-
+        <div className="usage-hint">
+          <p>You can do all lessons in one go, or spread them over a few days — whatever works best. Progress is saved automatically.</p>
+        </div>
         <button className="btn-primary welcome-cta" onClick={onStart}>
           Let's start →
         </button>
