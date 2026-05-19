@@ -257,7 +257,7 @@ function StepHowItWorks({ onNext }) {
       <div className="step-emoji">🕵️</div>
       <h2>True or false?</h2>
       <p className="step-body">
-        Some of these are things most people believe. Think carefully before you tap — a couple are designed to catch you out.
+        Some of these are things most people believe. Think carefully before you tap — a couple are designed to catch you out. And one of them has no clean true or false answer — it depends on the situation.
       </p>
       <div className="myth-list">
         {myths.map((myth) => {

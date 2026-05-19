@@ -319,7 +319,7 @@ function StepGamblingLine({ onNext }) {
           <div className="tip-icon">🎟️</div>
           <div className="tip-content">
             <h3>Lottery tickets</h3>
-            <p>The most visible gambling of all. On average, a lottery ticket returns about 50p for every £1 spent. The jackpot is real — but the odds of winning are tiny, and most players lose far more than they ever win.</p>
+            <p>The most visible gambling of all. Lottery organisers keep roughly half of all the money spent on tickets — the rest is paid out in prizes, but most of it goes to a tiny number of winners. The jackpot is real, but the odds of winning it are extremely small, and most players lose more than they ever win back.</p>
           </div>
         </div>
       </div>
