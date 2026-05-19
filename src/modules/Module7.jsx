@@ -100,7 +100,7 @@ function StepWhatIsInterest({ onNext }) {
       </div>
       <div className="highlight-box">
         <p>
-          Like inflation, interest is expressed as a <strong>percentage per year</strong>. If someone borrows 100 units of your currency at 5% interest for a year, they return 105 units of your currency — 100 borrowed, plus 5 in interest.
+          Like inflation, interest is expressed as a <strong>percentage per year</strong>. If someone borrows 100 euros at 5% interest for a year, they return 105 euros — 100 borrowed, plus 5 in interest.
         </p>
       </div>
       <button className="btn-primary" onClick={onNext}>Next →</button>
@@ -139,7 +139,7 @@ function StepInterestYouPay({ onNext }) {
           <span className="be-value warn">≈ 1,330 units of your currenc
           </span>
         </div>
-        <div className="be-note">330 units of your currency
+        <div className="be-note">330 euros
           
    paid just in interest</div>
       </div>
@@ -176,11 +176,11 @@ function StepInterestYouEarn({ onNext }) {
       </div>
       <div className="highlight-box">
         <p>
-          <strong>Example:</strong> you put 100 units of your currency
+          <strong>Example:</strong> you put 100 euros
           
-   into a savings account at 3% interest per year. After one year, you have 103 units of your currency
+   into a savings account at 3% interest per year. After one year, you have 103 euros
           
-   — the bank paid you 3 units of your currency
+   — the bank paid you 3 euros
           
    for keeping your money there.
         </p>

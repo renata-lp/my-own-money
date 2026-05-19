@@ -83,7 +83,7 @@ function StepWhatIsInflation({ onNext }) {
        It happens because of a combination of things: more money in circulation, higher costs for businesses, more demand for goods. The details are complex — but the effect is simple.
       </p>
       <p className="step-body">
-        In the examples throughout this lesson, we use a generic unit — think of it as your own currency (euros, pounds, dollars, reais, or whatever you use day to day).
+       In the examples throughout this lesson, we use euros — just as an illustration. The concepts work the same whatever currency you use.
       </p>
       <div className="inflation-example">
         <div className="ie-year">
@@ -93,7 +93,7 @@ function StepWhatIsInflation({ onNext }) {
             <div className="ie-item">🍫 Snack</div>
             <div className="ie-item">🚌 Bus ride</div>
           </div>
-          <div className="ie-total old">= 5 units of your currency</div>
+          <div className="ie-total old">= 5 euros</div>
         </div>
         <div className="ie-arrow">→</div>
         <div className="ie-year">
@@ -103,7 +103,7 @@ function StepWhatIsInflation({ onNext }) {
             <div className="ie-item">🍫 Snack</div>
             <div className="ie-item">🚌 Bus ride</div>
           </div>
-          <div className="ie-total new">= 5.5 units of your currency</div>
+          <div className="ie-total new">= 5.5 euros</div>
         </div>
       </div>
       <p className="step-body">Same things. Same amount. But they cost more. That's inflation in action.</p>
@@ -131,12 +131,12 @@ function StepBasket({ onNext }) {
         <div className="basket-label">The basket of everyday goods</div>
         <div className="basket-arrows">
           <div className="basket-year">
-            <span className="basket-price old">100 units of your currency</span>
+            <span className="basket-price old">100 euros</span>
             <span className="basket-date">Year 1</span>
           </div>
           <div className="basket-trend">↗</div>
           <div className="basket-year">
-            <span className="basket-price new">104 units of your currency</span>
+            <span className="basket-price new">104 euros</span>
             <span className="basket-date">Year 2</span>
           </div>
         </div>
@@ -163,14 +163,14 @@ function StepPercentage({ onNext }) {
           <div className="percent-num low">2%</div>
           <div className="percent-desc">
             <strong>Low inflation</strong>
-            <p>100 units of your currency buys goods worth 98 units of your currency a year later. Prices are rising slowly — this is considered normal and healthy.</p>
+            <p>100 euros buys goods worth 98 euros a year later. Prices are rising slowly — this is considered normal and healthy.</p>
           </div>
         </div>
         <div className="percent-card">
           <div className="percent-num mid">6%</div>
           <div className="percent-desc">
             <strong>Higher inflation</strong>
-            <p>100 units of your currency buys goods worth 94 units of your currency a year later. You notice it — things feel more expensive than they used to be.</p>
+            <p>100 euros buys goods worth 94 euros a year later. You notice it — things feel more expensive than they used to be.</p>
           </div>
         </div>
         <div className="percent-card">
@@ -182,7 +182,7 @@ function StepPercentage({ onNext }) {
         </div>
       </div>
       <div className="highlight-box">
-        <p><strong>Simple rule:</strong> if inflation is 4%, then something that cost 100 units of your currency at the start of the year will cost 104 units of your currency at the end. Your 100 units of your currency now buys less than it did.</p>
+        <p><strong>Simple rule:</strong> if inflation is 4%, then something that cost 100 euros at the start of the year will cost 104 euros at the end. Your 100 euros now buys less than it did.</p>
       </div>
       <button className="btn-primary" onClick={onNext}>See it in action →</button>
     </div>
@@ -248,11 +248,11 @@ function StepSimulator({ onNext }) {
       <div className="sim-result">
         <div className="sim-result-row">
           <span className="sim-result-label">Your money today</span>
-          <span className="sim-result-value">{amountNum} units of your currency</span>
+          <span className="sim-result-value">{amountNum} euros</span>
         </div>
         <div className="sim-result-row">
           <span className="sim-result-label">What it buys in {years} year{years > 1 ? "s" : ""}</span>
-          <span className="sim-result-value warn">{(amountNum * Math.pow(1 - inflation/100, years)).toFixed(1)} units of your currency worth</span>
+          <span className="sim-result-value warn">{(amountNum * Math.pow(1 - inflation/100, years)).toFixed(1)} euros worth</span>
         </div>
       </div>
       <button className="btn-primary" onClick={onNext}>Next →</button>
@@ -314,7 +314,7 @@ function StepWhatItMeans({ onNext }) {
       </p>
       <div className="highlight-box">
         <p>
-          <strong>Example:</strong> you save 100 units of your currency. Inflation is 4% per year. After one year, your 100 units of your currency can only buy what 96 units of your currency could buy before. After 5 years, it's more like 82 units of your currency worth of buying power.
+          <strong>Example:</strong> you save 100 euros. Inflation is 4% per year. After one year, your 100 euros can only buy what 96 euros could buy before. After 5 years, it's more like 82 euros worth of buying power.
         </p>
       </div>
       <p className="step-body">

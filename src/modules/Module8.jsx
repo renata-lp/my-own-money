@@ -212,11 +212,11 @@ function StepCreditCost({ onNext }) {
         </div>
         <div className="cr-row">
           <span>Interest added each month</span>
-          <span className="cr-val warn">+{monthlyInterest} units of your currency</span>
+          <span className="cr-val warn">+{monthlyInterest} euros</span>
         </div>
         <div className="cr-row big">
           <span>Interest added in one year</span>
-          <span className="cr-val warn">+{yearlyInterest} units of your currency</span>
+          <span className="cr-val warn">+{yearlyInterest} euros</span>
         </div>
         <div className="cr-note">That's money paid for the privilege of owing — without reducing the original balance at all.</div>
       </div>
@@ -233,7 +233,7 @@ function StepCreditCost({ onNext }) {
     {
       emoji: "💳",
       title: "Month 1",
-      desc: "Someone spends 500 units of your currency on a credit card. They can only afford to pay 50 units of your currency. The remaining 450 carries over.",
+      desc: "Someone spends 500 euros on a credit card. They can only afford to pay 50 euros. The remaining 450 carries over.",
       balance: 450,
       interest: 7.5,
     },
@@ -247,7 +247,7 @@ function StepCreditCost({ onNext }) {
     {
       emoji: "😟",
       title: "Month 6",
-      desc: "Despite paying 50 every month, the balance has barely moved — because interest keeps adding. They've paid 300 units of your currency and still owe nearly 400.",
+      desc: "Despite paying 50 every month, the balance has barely moved — because interest keeps adding. They've paid 300 euros and still owe nearly 400.",
       balance: 398,
       interest: 6.6,
     },
@@ -277,11 +277,11 @@ function StepCreditCost({ onNext }) {
           <div className="sc-numbers">
             <div className="sc-num">
               <span>Balance owed</span>
-              <span className="sc-val warn">{current.balance} units of your currency</span>
+              <span className="sc-val warn">{current.balance} euros</span>
             </div>
             <div className="sc-num">
               <span>Interest this month</span>
-              <span className="sc-val warn">+{current.interest} units of your currency</span>
+              <span className="sc-val warn">+{current.interest} euros</span>
             </div>
           </div>
         )}
