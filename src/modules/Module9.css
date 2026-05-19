@@ -195,3 +195,56 @@
 
 .wn-title { font-size: 0.85rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sun); }
 .wn-body { font-size: 0.92rem; color: var(--mid); line-height: 1.7; }
+.rs-item.higher { background: #FEF0E6; }
+.interest-poll {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.ip-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--light);
+  border: 2px solid #D0CCE0;
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--dark);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.ip-item:hover:not(.locked) {
+  border-color: var(--sun);
+  background: var(--sun-light);
+}
+
+.ip-item.selected {
+  border-color: var(--green);
+  background: #EAFAF1;
+  color: var(--green-dark);
+}
+
+.ip-item.locked {
+  cursor: default;
+}
+
+.ip-check {
+  font-size: 1rem;
+  font-weight: 900;
+  min-width: 20px;
+  text-align: center;
+}
+
+.ip-thanks {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  padding: 10px 0;
+}

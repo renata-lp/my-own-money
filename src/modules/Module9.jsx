@@ -170,35 +170,6 @@ function StepRiskReturn({ onNext }) {
       <p className="step-body">
         One rule in finance holds everywhere, always: <strong>higher potential return comes with higher risk</strong>. There are no exceptions. Anyone offering high returns with no risk is lying or running a scam.
       </p>
-      <div className="risk-spectrum">
-        <div className="rs-label top">← Lower risk / lower return</div>
-        <div className="rs-items">
-          <div className="rs-item low">
-            <span className="rs-icon">🏦</span>
-            <span>Savings account</span>
-            <span className="rs-sub">Safe, low return</span>
-          </div>
-          <div className="rs-arrow">→</div>
-          <div className="rs-item mid">
-            <span className="rs-icon">📊</span>
-            <span>Index fund</span>
-            <span className="rs-sub">Moderate risk, historical growth</span>
-          </div>
-          <div className="rs-arrow">→</div>
-          <div className="rs-item high">
-            <span className="rs-icon">📈</span>
-            <span>Single stock</span>
-            <span className="rs-sub">Higher risk, higher potential</span>
-          </div>
-          <div className="rs-arrow">→</div>
-          <div className="rs-item danger">
-            <span className="rs-icon">🎲</span>
-            <span>Gambling</span>
-            <span className="rs-sub">Odds against you</span>
-          </div>
-        </div>
-        <div className="rs-label bottom">Higher risk / higher potential return →</div>
-      </div>
       <div className="tips-list">
         <div className="tip-card">
           <div className="tip-icon">📉</div>
@@ -218,7 +189,8 @@ function StepRiskReturn({ onNext }) {
       <button className="btn-primary" onClick={onNext}>Next — spreading the risk →</button>
     </div>
   );
-}function StepDiversification({ onNext }) {
+}
+function StepDiversification({ onNext }) {
   return (
     <div className="step fade-in">
       <div className="step-emoji">🧺</div>
@@ -250,16 +222,54 @@ function StepRiskReturn({ onNext }) {
           <div className="ev-result good">One basket drops = one egg lost</div>
         </div>
       </div>
+      <p className="step-body">
+        Some investment options allow you to buy a small slice of a large, pre-built basket of stocks — hundreds or thousands of companies across many industries and countries. These are called index funds or ETFs. One purchase, instant diversification, usually at low cost.
+      </p>
+
       <div className="highlight-box">
-        <p>
-          <strong>Index funds and ETFs</strong> make this practical. Instead of picking individual companies, you buy a small slice of a huge, pre-built basket of hundreds or thousands of companies across many industries and countries. One purchase, instant diversification, usually at low cost. This is how most long-term investors actually invest.
-        </p>
+        <p><strong>How risk and potential return relate — from lowest to highest:</strong></p>
       </div>
+
+      <div className="risk-spectrum">
+        <div className="rs-label top">← Lower risk / lower return</div>
+        <div className="rs-items">
+          <div className="rs-item low">
+            <span className="rs-icon">🏦</span>
+            <span>Savings account</span>
+            <span className="rs-sub">Safe, low return</span>
+          </div>
+          <div className="rs-arrow">→</div>
+          <div className="rs-item mid">
+            <span className="rs-icon">📊</span>
+            <span>Basket of stocks</span>
+            <span className="rs-sub">ETFs / index funds</span>
+          </div>
+          <div className="rs-arrow">→</div>
+          <div className="rs-item high">
+            <span className="rs-icon">📈</span>
+            <span>Individual stock</span>
+            <span className="rs-sub">Higher risk</span>
+          </div>
+          <div className="rs-arrow">→</div>
+          <div className="rs-item higher">
+            <span className="rs-icon">👭</span>
+            <span>Friend's business</span>
+            <span className="rs-sub">No diversification</span>
+          </div>
+          <div className="rs-arrow">→</div>
+          <div className="rs-item danger">
+            <span className="rs-icon">🎲</span>
+            <span>Gambling</span>
+            <span className="rs-sub">Odds against you</span>
+          </div>
+        </div>
+        <div className="rs-label bottom">Higher risk / higher potential return →</div>
+      </div>
+
       <button className="btn-primary" onClick={onNext}>Now — where investing ends and gambling begins →</button>
     </div>
   );
 }
-
 function StepGamblingLine({ onNext }) {
   return (
     <div className="step fade-in">
@@ -393,7 +403,49 @@ function StepQuiz({ onNext }) {
     </div>
   );
 }
+function InterestPoll() {
+  const [selected, setSelected] = useState([]);
+  const [done, setDone] = useState(false);
 
+  const topics = [
+    "Cryptocurrencies — what they are and how they work",
+    "Tax — what it is and why it exists",
+    "Insurance — protecting against things going wrong",
+    "Pensions — saving for much later in life",
+    "Starting a business",
+    "More on investing",
+  ];
+
+  const toggle = (topic) => {
+    if (done) return;
+    setSelected((prev) =>
+      prev.includes(topic) ? prev.filter((t) => t !== topic) : [...prev, topic]
+    );
+  };
+
+  return (
+    <div className="interest-poll">
+      {topics.map((topic) => (
+        <button
+          key={topic}
+          className={`ip-item ${selected.includes(topic) ? "selected" : ""} ${done ? "locked" : ""}`}
+          onClick={() => toggle(topic)}
+        >
+          <span className="ip-check">{selected.includes(topic) ? "✓" : "+"}</span>
+          <span>{topic}</span>
+        </button>
+      ))}
+      {selected.length > 0 && !done && (
+        <button className="btn-secondary" style={{marginTop: "8px"}} onClick={() => setDone(true)}>
+          Submit →
+        </button>
+      )}
+      {done && (
+        <p className="ip-thanks">Thanks — this helps us decide what to build next.</p>
+      )}
+    </div>
+  );
+}
 function StepComplete({ onComplete, session }) {
   const [feedbackDone, setFeedbackDone] = useState(false);
 
@@ -419,11 +471,12 @@ function StepComplete({ onComplete, session }) {
       <div className="whats-next">
         <p className="wn-title">What's next?</p>
         <p className="wn-body">
-          These are the foundations. As you get older — and get access to bank accounts, savings products, and eventually investment accounts — you'll be ready to use them well.
+          These are the foundations. As you get older — and get access to bank accounts, savings products, and eventually investment accounts — you'll be ready to use them well. The concepts here go deeper the more you explore them.
         </p>
         <p className="wn-body">
-          There's more to learn: tax, insurance, pensions, more advanced investing. A second course is coming. For now — you're well ahead.
+          Is there anything you'd like to learn more about? Tap all that apply:
         </p>
+        <InterestPoll />
       </div>
       <LessonFeedback
         lessonNumber={9}

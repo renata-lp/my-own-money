@@ -267,7 +267,7 @@ function StepCreditCost({ onNext }) {
       <div className="step-emoji">🌀</div>
       <h2>How debt can spiral</h2>
       <p className="step-body">
-        Credit card debt is one of the most common financial traps for adults. Here's how it happens — step by step.
+        Credit card debt is one of the most common financial traps for adults. Remember the snowball effect from Lesson 7? Compound interest works the same way in reverse — except here it's working against you, growing your debt instead of your savings. Here's how it happens — step by step.
       </p>
       <div className="spiral-card">
         <div className="sc-emoji">{current.emoji}</div>
