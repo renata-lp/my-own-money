@@ -478,6 +478,11 @@ function StepComplete({ onComplete, session }) {
         </p>
         <InterestPoll />
       </div>
+      <div className="parent-feedback-bar">
+  <a href="https://forms.gle/3MpH2dCcrw7t2SXn8" target="_blank" rel="noopener noreferrer" className="parent-feedback-link">
+    Parent? We'd love your feedback →
+  </a>
+</div>
       <LessonFeedback
         lessonNumber={9}
         session={session}

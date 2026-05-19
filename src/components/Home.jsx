@@ -137,6 +137,11 @@ export default function Home({ completedLessons, onSelectLesson }) {
         <span className="footer-divider">·</span>
         <span className="copyright">© 2025 LearnMoney. All rights reserved.</span>
       </div>
+      <div className="parent-feedback-bar">
+  <a href="https://forms.gle/3MpH2dCcrw7t2SXn8" target="_blank" rel="noopener noreferrer" className="parent-feedback-link">
+    Parent? Share your feedback →
+  </a>
+</div>
     </div>
   );
 }
