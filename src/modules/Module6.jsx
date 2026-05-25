@@ -107,57 +107,47 @@ function StepThePool({ onNext }) {
       <div className="step-emoji">🏊</div>
       <h2>The common pool</h2>
       <p className="step-body">
-        Because so many people deposit money in the bank — and they don't all need it back at the same time — all deposits go into a common pool. The bank uses that pool to make loans, and repayments flow back in.
+        Because so many people deposit money — and they don't all need it back at the same time — all deposits go into a common pool. The bank uses that pool to make loans, and repayments flow back in.
       </p>
       <p className="step-body">
         When you want your money back, the bank pays you from the pool. Not from a box with your name on it — but the records mean it always knows exactly what you're owed.
       </p>
 
-      <div className="pool-diagram">
-        <div className="pd-column">
-          <div className="pd-col-label">Depositors</div>
+     <div className="pool-diagram">
+        <div className="pd-col">
+         <div className="pd-col-label">Account<br/>holders</div>
           <div className="pd-people">
             <div className="pd-person">👤 You</div>
             <div className="pd-person">👤 Others</div>
             <div className="pd-person">👤 Others</div>
           </div>
         </div>
-        <div className="pd-arrows-left">
-          <div className="pd-arrow-row">
-            <div className="pd-arrow in">→</div>
-            <div className="pd-arrow-label">deposit</div>
-          </div>
-          <div className="pd-arrow-row">
-            <div className="pd-arrow out">←</div>
-            <div className="pd-arrow-label">withdraw</div>
-          </div>
+
+        <div className="pd-arrows">
+          <div className="pd-arrow green">⇄</div>
+         <div className="pd-arrow-label">money<br/>in &amp; out</div>
         </div>
-        <div className="pd-pool">
+
+        <div className="pd-col center">
           <div className="pd-pool-box">
             <div className="pd-pool-icon">🏦</div>
             <div className="pd-pool-label">Common<br/>pool</div>
           </div>
         </div>
-        <div className="pd-arrows-right">
-          <div className="pd-arrow-row">
-            <div className="pd-arrow out">→</div>
-            <div className="pd-arrow-label">lend</div>
-          </div>
-          <div className="pd-arrow-row">
-            <div className="pd-arrow in">←</div>
-            <div className="pd-arrow-label">repay</div>
-          </div>
+
+        <div className="pd-arrows">
+          <div className="pd-arrow blue">⇄</div>
+          <div className="pd-arrow-label">lend &amp; repay</div>
         </div>
-       <div className="pd-column">
+
+        <div className="pd-col">
           <div className="pd-col-label">Borrowers</div>
           <div className="pd-people">
-            <div className="pd-person">🏠 Homebuyers</div>
+            <div className="pd-person">🏠 Buyers</div>
             <div className="pd-person">🏪 Businesses</div>
             <div className="pd-person">🛍️ Consumers</div>
-            <div className="pd-person">👤 Others</div>
           </div>
-        </div> 
-          
+        </div>
       </div>
 
       <div className="highlight-box">
@@ -165,11 +155,11 @@ function StepThePool({ onNext }) {
           <strong>The key insight:</strong> your money isn't sitting idle. It's part of a system that keeps money flowing. And the bank's records mean your balance is always protected — even if your specific coins are elsewhere.
         </p>
       </div>
+
       <button className="btn-primary" onClick={onNext}>Next →</button>
     </div>
   );
 }
-
 function StepBankRuns({ onNext }) {
   return (
     <div className="step fade-in">

@@ -1,3 +1,6 @@
+/* Module 6 - Bank account styles */
+
+/* ── Bank roles ── */
 .bank-roles {
   display: flex;
   flex-direction: column;
@@ -37,57 +40,20 @@
   line-height: 1.5;
 }
 
+/* ── Pool diagram ── */
+
 .pool-diagram {
   background: var(--white);
   border-radius: var(--radius);
-  padding: 24px 16px;
+  padding: 16px 8px;
   box-shadow: var(--shadow);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  overflow: hidden;
-}
-
-.pd-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  flex: 1;
-}
-
-.pd-col-label {
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--mid);
-  text-align: center;
-}
-
-.pd-people {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.pd-person {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--dark);
-  white-space: nowrap;
-}
-
-.pd-arrows-left,
-.pd-arrows-right {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr auto auto auto 1fr;
+  gap: 4px;
   align-items: center;
 }
 
-.pd-arrow-row {
+.pd-arrows {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,54 +62,37 @@
 
 .pd-arrow {
   font-size: 1.2rem;
-  font-weight: 900;
   line-height: 1;
 }
 
-.pd-arrow.in { color: var(--green); }
-.pd-arrow.out { color: var(--blue); }
+.pd-arrow.green { color: var(--green-dark); }
+.pd-arrow.blue { color: var(--blue-dark); }
 
 .pd-arrow-label {
-  font-size: 0.65rem;
+  font-size: 0.55rem;
   font-weight: 700;
   color: var(--mid);
-  letter-spacing: 0.04em;
+  text-align: center;
   text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
-
-.pd-pool {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.pd-person {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--dark);
+  white-space: nowrap;
 }
-
-.pd-pool-box {
-  background: var(--sun-light);
-  border: 3px solid var(--sun);
-  border-radius: var(--radius);
-  padding: 16px 12px;
+.pd-col {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.pd-col.center {
   align-items: center;
-  gap: 6px;
-  min-width: 70px;
 }
-
-.pd-pool-icon {
-  font-size: 1.8rem;
-  line-height: 1;
-}
-
-.pd-pool-label {
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--dark);
-  text-align: center;
-  line-height: 1.3;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
+/* ── Bank run visual ── */
 .bankrun-visual {
   background: var(--white);
   border-radius: var(--radius);
@@ -185,6 +134,7 @@
   color: var(--coral);
 }
 
+/* ── Protection steps ── */
 .protection-steps {
   display: flex;
   flex-direction: column;
@@ -233,6 +183,7 @@
   line-height: 1.5;
 }
 
+/* ── Banking apps ── */
 .app-features {
   display: flex;
   flex-direction: column;
