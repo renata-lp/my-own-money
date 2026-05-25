@@ -127,6 +127,10 @@
   min-width: 64px;
   text-align: center;
 }
+.pd-col.right {
+  align-items: flex-end;
+  text-align: right;
+}
 
 /* ── Bank run visual ── */
 .bankrun-visual {

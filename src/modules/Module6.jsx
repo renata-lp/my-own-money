@@ -142,7 +142,7 @@ function StepThePool({ onNext }) {
           <div className="pd-arrow-label">repay</div>
         </div>
 
-        <div className="pd-col">
+        <div className="pd-col right">
           <div className="pd-col-label">Borrowers</div>
           <div className="pd-people">
             <div className="pd-person">🏠 Buyers</div>
