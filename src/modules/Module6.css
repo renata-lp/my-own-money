@@ -68,14 +68,33 @@
 .pd-arrow.green { color: var(--green-dark); }
 .pd-arrow.blue { color: var(--blue-dark); }
 
+.pd-col-label {
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dark);
+  text-align: left;
+}
+.pd-pool-label {
+  font-size: 0.62rem;
+  font-weight: 900;
+  color: var(--dark);
+  text-align: center;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
 .pd-arrow-label {
   font-size: 0.55rem;
   font-weight: 700;
   color: var(--mid);
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
 }
+
 .pd-person {
   font-size: 0.6rem;
   font-weight: 700;

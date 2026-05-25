@@ -125,7 +125,8 @@ function StepThePool({ onNext }) {
 
         <div className="pd-arrows">
           <div className="pd-arrow green">⇄</div>
-         <div className="pd-arrow-label">money<br/>in &amp; out</div>
+          <div className="pd-arrow-label">money in</div>
+          <div className="pd-arrow-label">money out</div>
         </div>
 
         <div className="pd-col center">
@@ -137,7 +138,8 @@ function StepThePool({ onNext }) {
 
         <div className="pd-arrows">
           <div className="pd-arrow blue">⇄</div>
-          <div className="pd-arrow-label">lend &amp; repay</div>
+          <div className="pd-arrow-label">lend</div>
+          <div className="pd-arrow-label">repay</div>
         </div>
 
         <div className="pd-col">
