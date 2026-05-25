@@ -109,8 +109,25 @@
 }
 
 .pd-col.center {
+  display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
+.pd-pool-box {
+  background: var(--sun-light);
+  border: 3px solid var(--sun);
+  border-radius: var(--radius);
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 64px;
+  text-align: center;
+}
+
 /* ── Bank run visual ── */
 .bankrun-visual {
   background: var(--white);
