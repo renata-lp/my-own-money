@@ -63,7 +63,7 @@ const LESSONS = [
     description: "Investing, risk, diversification — and where gambling begins.",
     emoji: "🌱",
     screen: "module9",
-  }, ,
+  },
 ];
 export default function Home({ completedLessons, onSelectLesson }) {
   const completedCount = completedLessons.length;
