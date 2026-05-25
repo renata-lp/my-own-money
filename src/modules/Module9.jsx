@@ -403,7 +403,7 @@ function StepQuiz({ onNext }) {
     </div>
   );
 }
-function InterestPoll() {
+function InterestPoll({ session }) {
   const [selected, setSelected] = useState([]);
   const [done, setDone] = useState(false);
 
@@ -423,6 +423,19 @@ function InterestPoll() {
     );
   };
 
+  const submit = async () => {
+    try {
+      const { supabase } = await import("../supabase");
+      await supabase.from("interest_poll").insert({
+        session_id: session?.id || null,
+        topics: selected.join(", "),
+      });
+    } catch (e) {
+      console.error("Poll save error:", e);
+    }
+    setDone(true);
+  };
+
   return (
     <div className="interest-poll">
       {topics.map((topic) => (
@@ -436,7 +449,7 @@ function InterestPoll() {
         </button>
       ))}
       {selected.length > 0 && !done && (
-        <button className="btn-secondary" style={{marginTop: "8px"}} onClick={() => setDone(true)}>
+        <button className="btn-secondary" style={{marginTop: "8px"}} onClick={submit}>
           Submit →
         </button>
       )}
@@ -476,7 +489,7 @@ function StepComplete({ onComplete, session }) {
         <p className="wn-body">
           Is there anything you'd like to learn more about? Tap all that apply:
         </p>
-        <InterestPoll />
+       <InterestPoll session={session} />
       </div>
    <div className="parent-feedback-bar">
   <a href="https://forms.gle/3MpH2dCcrw7t2SXn8" target="_blank" rel="noopener noreferrer" className="parent-feedback-link">
