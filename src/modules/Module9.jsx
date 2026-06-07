@@ -403,7 +403,7 @@ function StepQuiz({ onNext }) {
     </div>
   );
 }
-function InterestPoll({ session }) {
+function InterestPoll({ session, onDone }) {
   const [selected, setSelected] = useState([]);
   const [done, setDone] = useState(false);
 
@@ -434,6 +434,7 @@ function InterestPoll({ session }) {
       console.error("Poll save error:", e);
     }
     setDone(true);
+    onDone?.();
   };
 
   return (
@@ -461,12 +462,14 @@ function InterestPoll({ session }) {
 }
 function StepComplete({ onComplete, session }) {
   const [feedbackDone, setFeedbackDone] = useState(false);
+  const [pollDone, setPollDone] = useState(false);
 
   return (
     <div className="step fade-in complete-step">
       <div className="complete-badge">🎓</div>
       <h2>You've completed Your Own Money!</h2>
       <p className="step-lead">That's all nine lessons. You now know more about money than most adults did at your age.</p>
+
       <div className="summary-box">
         <p className="summary-title">What you covered:</p>
         <ul>
@@ -481,28 +484,31 @@ function StepComplete({ onComplete, session }) {
           <li>✓ Investing, risk, diversification — and where gambling begins</li>
         </ul>
       </div>
+
       <div className="whats-next">
         <p className="wn-title">What's next?</p>
         <p className="wn-body">
-          These are the foundations. As you get older — and get access to bank accounts, savings products, and eventually investment accounts — you'll be ready to use them well. The concepts here go deeper the more you explore them.
+          These are the foundations. As you get older — and get access to bank accounts, savings products, and eventually investment accounts — you'll be ready to use them well.
         </p>
         <p className="wn-body">
           Is there anything you'd like to learn more about? Tap all that apply:
         </p>
-       <InterestPoll session={session} />
+        <InterestPoll session={session} onDone={() => setPollDone(true)} />
       </div>
-   <div className="parent-feedback-bar">
-  <a href="https://forms.gle/3MpH2dCcrw7t2SXn8" target="_blank" rel="noopener noreferrer" className="parent-feedback-link">
-    📝 Parent? We'd love your feedback →
-  </a>
-</div>
+
+      <div className="parent-feedback-bar">
+        <a href="https://forms.gle/3MpH2dCcrw7t2SXn8" target="_blank" rel="noopener noreferrer" className="parent-feedback-link">
+          📝 Parent? We'd love your feedback →
+        </a>
+      </div>
 
       <LessonFeedback
         lessonNumber={9}
         session={session}
         onComplete={() => setFeedbackDone(true)}
       />
-      {feedbackDone && (
+
+      {feedbackDone && pollDone && (
         <button className="btn-green" onClick={onComplete}>
           Back to home →
         </button>
